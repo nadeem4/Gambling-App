@@ -1,0 +1,1130 @@
+{
+    "ApplicationName": "Microbet2",
+    "DisplayName": "Ante Up",
+    "Description": "Microbet",
+    "ApplicationRoles" : [
+        {
+            "Name": "Bettor",
+            "Description": ""
+        },
+        {
+            "Name": "AnteUp",
+            "Description": ""
+        },
+        {
+            "Name": "FlowUser",
+            "Description": ""
+        }
+    ],
+    "Workflows": [
+        {
+            
+            "Name": "Microbet2",
+            "DisplayName" : "Microbet",
+            "Description" : "",
+            "Initiators" : ["Bettor"],
+            "StartState": "BetPlaced" ,
+            "Properties" : [
+                {
+                    "Name": "State",
+                    "DisplayName": "State",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "state"
+                    }
+                },
+                {
+                    "Name": "Bettor",
+                    "DisplayName": "Bettor",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "Bettor"
+                    }
+                },
+                {
+                    "Name": "AnteUp",
+                    "DisplayName": "AnteUp",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "AnteUp"
+                    }
+                },
+                {
+                    "Name": "parentContractId",
+                    "DisplayName": "Parent Contract Id",
+                    "Description": "Parent Contract Id",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "trackignId",
+                    "DisplayName": "Tracking Id",
+                    "Description": "Tracking Id",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "betId",
+                    "DisplayName": "Bet Id",
+                    "Description": "Bet Id",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "betAmount",
+                    "DisplayName": "Bet Amount",
+                    "Description": "Bet Amount",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "gameStartTime",
+                    "DisplayName": "Game start time",
+                    "Description": "Game start time",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "paypalId",
+                    "DisplayName": "PayPal ID",
+                    "Description": "PayPal ID",
+                    "Type": {
+                        "Name": "string"
+                    }
+                },
+                {
+                    "Name": "reason",
+                    "DisplayName": "Reason for Cancellation",
+                    "Description": "Reason for Cancellation",
+                    "Type": {
+                        "Name": "string"
+                    }
+                },
+                {
+                    "Name": "childContractIds",
+                    "DisplayName": "Child Contract Id Array",
+                    "Description": "Child Contract Id Array",
+                    "Type": {
+                        "Name": "array",
+                        "ElementType" :{
+                            "Name": "int"
+                        }
+                    }
+                },
+                {
+                    "Name": "betResult",
+                    "DisplayName": "Bet Result",
+                    "Description": "Bet Result",
+                    "Type": {
+                        "Name": "enum",
+                        "EnumValues" : ["Won", "Lost"]
+                    }
+                }
+            ],
+            "Constructor": {
+                "Parameters" : [
+                    {
+                        "Name": "_anteUp",
+                        "DisplayName": "AnteUp",
+                        "Description": "Holds the state of the contract",
+                        "Type": {
+                            "Name": "AnteUp"
+                        }
+                    },
+                    {
+                        "Name": "_betId",
+                        "DisplayName": "Bet Id",
+                        "Description": "Bet Id",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    },
+                    {
+                        "Name": "_betAmount",
+                        "DisplayName": "Bet Amount",
+                        "Description": "Bet Amount",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    },
+                    {
+                        "Name": "_paypalId",
+                        "DisplayName": "PayPal ID",
+                        "Description": "PayPal ID",
+                        "Type": {
+                            "Name": "string"
+                        }
+                    },
+                    {
+                        "Name": "_gameStartTime",
+                        "DisplayName": "Game start time",
+                        "Description": "Game start time",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    }
+                ]
+            },
+            "Functions" : [
+                {
+                    "Name": "requestAmount",
+                    "DisplayName": "Request Amount from Bettor",
+                    "Description": "Request Amount from Bettor",
+                    "Parameters" : [
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "receivePayment",
+                    "DisplayName": "Receive Amount from Bettor",
+                    "Description": "Receive Amount from Bettor",
+                    "Parameters" : [
+                        {
+                            "Name": "_paymentSuccessFull",
+                            "DisplayName": "Payment Successfull",
+                            "Description": "Payment Successfull",
+                            "Type": {
+                                "Name": "bool"
+                            }
+                        },
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "cancelBet",
+                    "DisplayName": "Cancel Bet",
+                    "Description": "Cancel Bet",
+                    "Parameters" : [
+                        {
+                            "Name": "_reason",
+                            "DisplayName": "Reason",
+                            "Description": "Reason",
+                            "Type": {
+                                "Name": "string"
+                            }
+                        },
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "requestBetResult",
+                    "DisplayName": "Request bet result",
+                    "Description": "Request bet result",
+                    "Parameters" : [
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "provideBetResult",
+                    "DisplayName": "Provide Bet Result",
+                    "Description": "Provide Bet Result",
+                    "Parameters" : [
+                        {
+                            "Name": "_betResult",
+                            "DisplayName": "Bet Result",
+                            "Description": "Bet Result",
+                            "Type": {
+                                "Name": "enum",
+                                "EnumValues" : ["Won", "Lost"]
+                            }
+                        },
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "cashOut",
+                    "DisplayName": "Cash Out",
+                    "Description": "Cash Out",
+                    "Parameters" : [
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "lockBet",
+                    "DisplayName": "Lock bet",
+                    "Description": "Lock bet",
+                    "Parameters" : [
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "createNewBet",
+                    "DisplayName": "Create new Bet",
+                    "Description": "Cash Out",
+                    "Parameters" : [
+                        {
+                            "Name": "_betId",
+                            "DisplayName": "Bet Id",
+                            "Description": "Bet Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        },
+                        {
+                            "Name": "_betAmount",
+                            "DisplayName": "Bet Amount",
+                            "Description": "Bet Amount",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        },
+                        {
+                            "Name": "_paypalId",
+                            "DisplayName": "PayPal ID",
+                            "Description": "PayPal ID",
+                            "Type": {
+                                "Name": "string"
+                            }
+                        },
+                        {
+                            "Name": "_gameStartTime",
+                            "DisplayName": "Game start time",
+                            "Description": "Game start time",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        },
+                        {
+                            "Name": "_trackingId",
+                            "DisplayName": "Tracking Id",
+                            "Description": "Tracking Id",
+                            "Type": {
+                                "Name": "int"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "States" : [
+                {
+                    "Name": "BetPlaced",
+                    "DisplayName" : "Bet Placed",
+                    "Description": "",
+                    "PercentComplete": 10,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestAmount",
+                            "NextStates": [ "PaymentRequested" ],
+                            "DisplayName": "Payment Requested"
+                        }
+                    ]
+                },
+                {
+                    "Name": "PaymentRequested",
+                    "DisplayName" : "Payment Requestedd",
+                    "Description": "",
+                    "PercentComplete": 20,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "receivePayment",
+                            "NextStates": ["PaymentFailed", "PaymentSuccessfull" , "BetConfirmed", "BetCancelled"],
+                            "DisplayName": "Payment Successfull"
+                        },
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cancelBet",
+                            "NextStates": [ "BetCancelled" ],
+                            "DisplayName": "Payment Cancelled"
+                        }
+                    ]
+                },
+                {
+                    "Name": "PaymentSuccessfull",
+                    "DisplayName" : "Payment Successfull",
+                    "Description": "",
+                    "PercentComplete": 30,
+                    "Style": "Success",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "PaymentFailed",
+                    "DisplayName" : "Payment failed",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Failure",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "BetConfirmed",
+                    "DisplayName" : "Bet Confirmed",
+                    "Description": "",
+                    "PercentComplete": 50,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "lockBet",
+                            "NextStates": ["BetLocked"],
+                            "DisplayName": "Bet Locked"
+                        },
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cancelBet",
+                            "NextStates": [ "BetCancelled" ],
+                            "DisplayName": "Bet Cancelled"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetCancelled",
+                    "DisplayName" : "Bet Cancelled",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Failure",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "BetLocked",
+                    "DisplayName" : "Bet Locked",
+                    "Description": "",
+                    "PercentComplete": 60,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestBetResult",
+                            "NextStates": ["BetResultRequested"],
+                            "DisplayName": "Bet Result Requested"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetResultRequested",
+                    "DisplayName" : "Bet Result Requested",
+                    "Description": "",
+                    "PercentComplete": 70,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "provideBetResult",
+                            "NextStates": ["BetResultProvided"],
+                            "DisplayName": "Bet Result Provided"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetResultProvided",
+                    "DisplayName" : "Bet Result Provided",
+                    "Description": "",
+                    "PercentComplete": 80,
+                    "Style": "Success",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "BetWon",
+                    "DisplayName" : "Bet Won",
+                    "Description": "",
+                    "PercentComplete": 80,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "createNewBet",
+                            "NextStates": ["LetItRide"],
+                            "DisplayName": "Let it ride"
+                        },
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cashOut",
+                            "NextStates": ["CashedOut"],
+                            "DisplayName": "Cashed Out"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetLost",
+                    "DisplayName" : "Bet Lost",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Failure",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "LetItRide",
+                    "DisplayName" : "Let it ride",
+                    "Description": "",
+                    "PercentComplete": 80,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestAmount",
+                            "NextStates": [ "PaymentRequested" ],
+                            "DisplayName": "Payment Requested"
+                        },
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "receivePayment",
+                            "NextStates": ["PaymentFailed", "PaymentSuccessfull" , "BetConfirmed", "BetCancelled"],
+                            "DisplayName": "Payment Successfull"
+                        },
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "lockBet",
+                            "NextStates": ["BetLocked"],
+                            "DisplayName": "Bet Locked"
+                        },
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestBetResult",
+                            "NextStates": ["BetResultRequested"],
+                            "DisplayName": "Bet Result Requested"
+                        },
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "provideBetResult",
+                            "NextStates": ["BetResultProvided"],
+                            "DisplayName": "Bet Result Provided"
+                        },
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "createNewBet",
+                            "NextStates": ["LetItRide"],
+                            "DisplayName": "Let it ride"
+                        },
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cashOut",
+                            "NextStates": ["CashedOut"],
+                            "DisplayName": "Cashed Out"
+                        },
+                        {
+                            "AllowedRoles": [ "AnteUp" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cancelBet",
+                            "NextStates": [ "BetCancelled" ],
+                            "DisplayName": "Payment Cancelled"
+                        }
+                    ]
+                },
+                {
+                    "Name": "CashedOut",
+                    "DisplayName" : "Cashed Out",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Success",
+                    "Transitions": []
+                }
+            ]
+        },
+        {
+            
+            "Name": "MicrobetLine2",
+            "DisplayName" : "Microbet Line",
+            "Description" : "",
+            "Initiators" : [],
+            "StartState": "BetPlaced" ,
+            "Properties" : [
+                {
+                    "Name": "State",
+                    "DisplayName": "State",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "state"
+                    }
+                },
+                {
+                    "Name": "Bettor",
+                    "DisplayName": "Bettor",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "Bettor"
+                    }
+                },
+                {
+                    "Name": "headerContractAddress",
+                    "DisplayName": "Header Contract Address",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "address"
+                    }
+                },
+                {
+                    "Name": "AnteUp",
+                    "DisplayName": "AnteUp",
+                    "Description": "Holds the state of the contract",
+                    "Type": {
+                        "Name": "AnteUp"
+                    }
+                },
+                {
+                    "Name": "parentContractId",
+                    "DisplayName": "Parent Contract Id",
+                    "Description": "Parent Contract Id",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "trackignId",
+                    "DisplayName": "Tracking Id",
+                    "Description": "Tracking Id",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "betId",
+                    "DisplayName": "Bet Id",
+                    "Description": "Bet Id",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "betAmount",
+                    "DisplayName": "Bet Amount",
+                    "Description": "Bet Amount",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "gameStartTime",
+                    "DisplayName": "Game start time",
+                    "Description": "Game start time",
+                    "Type": {
+                        "Name": "int"
+                    }
+                },
+                {
+                    "Name": "paypalId",
+                    "DisplayName": "PayPal ID",
+                    "Description": "PayPal ID",
+                    "Type": {
+                        "Name": "string"
+                    }
+                },
+                {
+                    "Name": "reason",
+                    "DisplayName": "Reason for Cancellation",
+                    "Description": "Reason for Cancellation",
+                    "Type": {
+                        "Name": "string"
+                    }
+                },
+                {
+                    "Name": "betResult",
+                    "DisplayName": "Bet Result",
+                    "Description": "Bet Result",
+                    "Type": {
+                        "Name": "enum",
+                        "EnumValues" : ["Won", "Lost"]
+                    }
+                }
+            ],
+            "Constructor": {
+                "Parameters" : [
+                    {
+                        "Name": "_anteUp",
+                        "DisplayName": "AnteUp",
+                        "Description": "Holds the state of the contract",
+                        "Type": {
+                            "Name": "AnteUp"
+                        }
+                    },
+                    {
+                        "Name": "_betId",
+                        "DisplayName": "Bet Id",
+                        "Description": "Bet Id",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    },
+                    {
+                        "Name": "_betAmount",
+                        "DisplayName": "Bet Amount",
+                        "Description": "Bet Amount",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    },
+                    {
+                        "Name": "_paypalId",
+                        "DisplayName": "PayPal ID",
+                        "Description": "PayPal ID",
+                        "Type": {
+                            "Name": "string"
+                        }
+                    },
+                    {
+                        "Name": "_gameStartTime",
+                        "DisplayName": "Game start time",
+                        "Description": "Game start time",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    },
+                    {
+                        "Name": "_headerContractAddress",
+                        "DisplayName": "Header Contract Addess",
+                        "Description": "Header Contract Addess",
+                        "Type": {
+                            "Name": "address"
+                        }
+                    },
+                    {
+                        "Name": "_bettor",
+                        "DisplayName": "Bettor",
+                        "Description": "Bettor",
+                        "Type": {
+                            "Name": "address"
+                        }
+                    },
+                    {
+                        "Name": "_parentTrackingId",
+                        "DisplayName": "Parent Tracking Id",
+                        "Description": "Parent Tracking Id",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    },
+                    {
+                        "Name": "_trackingId",
+                        "DisplayName": "Tracking Id",
+                        "Description": "Tracking Id",
+                        "Type": {
+                            "Name": "int"
+                        }
+                    }
+                ]
+            },
+            "Functions" : [
+                {
+                    "Name": "requestAmount",
+                    "DisplayName": "Request Amount from Bettor",
+                    "Description": "Request Amount from Bettor",
+                    "Parameters" : [
+                       
+                    ]
+                },
+                {
+                    "Name": "receivePayment",
+                    "DisplayName": "Receive Amount from Bettor",
+                    "Description": "Receive Amount from Bettor",
+                    "Parameters" : [
+                        {
+                            "Name": "_paymentSuccessFull",
+                            "DisplayName": "Payment Successfull",
+                            "Description": "Payment Successfull",
+                            "Type": {
+                                "Name": "bool"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "cancelBet",
+                    "DisplayName": "Cancel Bet",
+                    "Description": "Cancel Bet",
+                    "Parameters" : [
+                        {
+                            "Name": "_reason",
+                            "DisplayName": "Reason",
+                            "Description": "Reason",
+                            "Type": {
+                                "Name": "string"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "requestBetResult",
+                    "DisplayName": "Request bet result",
+                    "Description": "Request bet result",
+                    "Parameters" : [
+                       
+                    ]
+                },
+                {
+                    "Name": "provideBetResult",
+                    "DisplayName": "Provide Bet Result",
+                    "Description": "Provide Bet Result",
+                    "Parameters" : [
+                        {
+                            "Name": "_betWon",
+                            "DisplayName": "Bet Won",
+                            "Description": "Bet Won",
+                            "Type": {
+                                "Name": "bool"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "cashOut",
+                    "DisplayName": "Cash Out",
+                    "Description": "Cash Out",
+                    "Parameters" : [
+                    ]
+                },
+                {
+                    "Name": "lockBet",
+                    "DisplayName": "Lock bet",
+                    "Description": "Lock bet",
+                    "Parameters" : [
+                
+                    ]
+                },
+                {
+                    "Name": "createNewBet",
+                    "DisplayName": "Create new Bet",
+                    "Description": "Cash Out",
+                    "Parameters" : [
+                    ]
+                }
+            ],
+            "States" : [
+                {
+                    "Name": "BetPlaced",
+                    "DisplayName" : "Bet Placed",
+                    "Description": "",
+                    "PercentComplete": 10,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestAmount",
+                            "NextStates": [ "PaymentRequested" ],
+                            "DisplayName": "Payment Requested"
+                        }
+                    ]
+                },
+                {
+                    "Name": "PaymentRequested",
+                    "DisplayName" : "Payment Requestedd",
+                    "Description": "",
+                    "PercentComplete": 20,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "receivePayment",
+                            "NextStates": ["PaymentFailed", "PaymentSuccessfull" , "BetConfirmed", "BetCancelled"],
+                            "DisplayName": "Payment Successfull"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cancelBet",
+                            "NextStates": [ "BetCancelled" ],
+                            "DisplayName": "Payment Cancelled"
+                        }
+                    ]
+                },
+                {
+                    "Name": "PaymentSuccessfull",
+                    "DisplayName" : "Payment Successfull",
+                    "Description": "",
+                    "PercentComplete": 30,
+                    "Style": "Success",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "PaymentFailed",
+                    "DisplayName" : "Payment failed",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Failure",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "BetConfirmed",
+                    "DisplayName" : "Bet Confirmed",
+                    "Description": "",
+                    "PercentComplete": 50,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "lockBet",
+                            "NextStates": ["BetLocked"],
+                            "DisplayName": "Bet Locked"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cancelBet",
+                            "NextStates": [ "BetCancelled" ],
+                            "DisplayName": "Payment Cancelled"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetCancelled",
+                    "DisplayName" : "Bet Cancelled",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Failure",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "BetLocked",
+                    "DisplayName" : "Bet Locked",
+                    "Description": "",
+                    "PercentComplete": 60,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestBetResult",
+                            "NextStates": ["BetResultRequested"],
+                            "DisplayName": "Bet Result Requested"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetResultRequested",
+                    "DisplayName" : "Bet Result Requested",
+                    "Description": "",
+                    "PercentComplete": 70,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "provideBetResult",
+                            "NextStates": ["BetResultProvided"],
+                            "DisplayName": "Bet Result Provided"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetResultProvided",
+                    "DisplayName" : "Bet Result Provided",
+                    "Description": "",
+                    "PercentComplete": 80,
+                    "Style": "Success",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "BetWon",
+                    "DisplayName" : "Bet Won",
+                    "Description": "",
+                    "PercentComplete": 80,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "createNewBet",
+                            "NextStates": ["LetItRide"],
+                            "DisplayName": "Let it ride"
+                        },
+                        {
+                            "AllowedRoles": [ "Bettor" ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cashOut",
+                            "NextStates": ["CashedOut"],
+                            "DisplayName": "Cashed Out"
+                        }
+                    ]
+                },
+                {
+                    "Name": "BetLost",
+                    "DisplayName" : "Bet Lost",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Failure",
+                    "Transitions": [
+                    ]
+                },
+                {
+                    "Name": "LetItRide",
+                    "DisplayName" : "Let it ride",
+                    "Description": "",
+                    "PercentComplete": 800,
+                    "Style": "Success",
+                    "Transitions": [
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestAmount",
+                            "NextStates": [ "PaymentRequested" ],
+                            "DisplayName": "Payment Requested"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "receivePayment",
+                            "NextStates": ["PaymentFailed", "PaymentSuccessfull" , "BetConfirmed", "BetCancelled"],
+                            "DisplayName": "Payment Successfull"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "lockBet",
+                            "NextStates": ["BetLocked"],
+                            "DisplayName": "Bet Locked"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "requestBetResult",
+                            "NextStates": ["BetResultRequested"],
+                            "DisplayName": "Bet Result Requested"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "provideBetResult",
+                            "NextStates": ["BetResultProvided"],
+                            "DisplayName": "Bet Result Provided"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "createNewBet",
+                            "NextStates": ["LetItRide"],
+                            "DisplayName": "Let it ride"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cashOut",
+                            "NextStates": ["CashedOut"],
+                            "DisplayName": "Cashed Out"
+                        },
+                        {
+                            "AllowedRoles": [  ],
+                            "AllowedInstanceRoles": [  ],
+                            "Description": "Modify attributes of this contract.",
+                            "Function": "cancelBet",
+                            "NextStates": [ "BetCancelled" ],
+                            "DisplayName": "Payment Cancelled"
+                        }
+                    ]
+                },
+                {
+                    "Name": "CashedOut",
+                    "DisplayName" : "Cashed Out",
+                    "Description": "",
+                    "PercentComplete": 100,
+                    "Style": "Success",
+                    "Transitions": []
+                }
+            ]
+        }
+    ]
+}
